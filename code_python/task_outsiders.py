@@ -40,4 +40,4 @@ print(df)
 # 将df除制定标签外的多余列删去
 df.drop(['任务号码','任务标价','任务执行情况'], axis=1, inplace=True)
 # 将df导出为excel
-df.to_excel('../data/已结束项目任务数据(精简版).xlsx', index=False)
+df.to_excel('../data/有效已结束项目任务位置数据.xlsx', index=False)

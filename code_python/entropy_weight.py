@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import math        #测试
+import math        #测试为啥不能上传
 
 data = pd.read_excel('../data/有效会员信息数据.xlsx')
 data = data.dropna()

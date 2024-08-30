@@ -64,6 +64,6 @@ print(outliers_latitude)
 df.reset_index(drop=True, inplace=True)
 print(df)
 # Create a new dataframe with only longitude and latitude columns
-new_df = df[['会员编号', '经度', '纬度']].copy()
+new_df = df[['会员编号', '经度', '纬度', '预订任务限额', '预订任务开始时间']].copy()
 new_df.to_excel('../data/有效会员位置数据.xlsx', index=False)
 

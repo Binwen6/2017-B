@@ -1,12 +1,12 @@
 import pandas as pd
 import numpy as np
-import math
+import math        #测试
 
 data = pd.read_excel('../data/有效会员信息数据.xlsx')
 data = data.dropna()
 data = data.reset_index(drop=True)
 
-# 计算指标1
+# 计算指标1dvdv
 x_1 = data['预订任务限额'].values
 
 # 计算指标2

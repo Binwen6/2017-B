@@ -65,36 +65,24 @@ data.to_excel('../data/会员完成能力指标.xlsx', index=False)
 
 
 
-# 初始化熵值
-e_1 = 0
-e_2 = 0
+# Ensure correct normalization
+data['指标1'] = (data['指标1'] - data['指标1'].min()) / (data['指标1'].max() - data['指标1'].min())
+data['指标2'] = (data['指标2'] - data['指标2'].min()) / (data['指标2'].max() - data['指标2'].min())
 
-p_1 = data['指标1比重'].values
-p_2 = data['指标2比重'].values
+# Calculate proportions
+p_1 = data['指标1'] / data['指标1'].sum()
+p_2 = data['指标2'] / data['指标2'].sum()
 
-# 常量K的计算
-n = len(data)  # 样本数量
-K = 1 / math.log(n)
+# Calculate entropy
+K = 1 / np.log(len(data))
+e_1 = -K * np.sum(p_1 * np.log(p_1 + 1e-10))  # Adding a tiny value to avoid log(0)
+e_2 = -K * np.sum(p_2 * np.log(p_2 + 1e-10))
 
-# 计算每个指标的熵值
-for i in range(n):
-    if p_1[i] > 0:  # 避免 log(0) 错误
-        e_1 += p_1[i] * math.log(p_1[i])
-    if p_2[i] > 0:
-        e_2 += p_2[i] * math.log(p_2[i])
-
-# 熵值取负乘以K
-e_1 = -e_1 * K
-e_2 = -e_2 * K
-
-# 计算信息熵冗余度
+# Calculate redundancy and weights
 r_1 = 1 - e_1
 r_2 = 1 - e_2
-
-# 计算指标1和指标2的权值
 w_1 = r_1 / (r_1 + r_2)
 w_2 = r_2 / (r_1 + r_2)
 
-# 输出权值
 print('指标1的权值为:', w_1)
 print('指标2的权值为:', w_2)

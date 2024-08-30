@@ -6,7 +6,7 @@ from scipy.stats import boxcox_normmax
 from scipy.special import inv_boxcox
 
 # 将附件一.xlsx中的数据读取到dataframe中
-df = pd.read_excel('附件一：已结束项目任务数据.xls')
+df = pd.read_excel('/Users/eureka/VSCodeProjects/2017-B/data/附件一：已结束项目任务数据.xls')
 print(df)
 
 # 对dataframe中的其中标签为“经度”“纬度”两列数据依据3sigma准则进行剔除进行异常值剔除（似的剔除异常值后对dataframe不再包括异常值所在行），并打印出异常值
@@ -40,4 +40,4 @@ print(df)
 # 将df除制定标签外的多余列删去
 df.drop(['任务号码','任务标价','任务执行情况'], axis=1, inplace=True)
 # 将df导出为excel
-df.to_excel('已结束项目任务数据(精简版).xlsx', index=False)
+df.to_excel('/Users/eureka/VSCodeProjects/2017-B/data/已结束项目任务数据(精简版).xlsx', index=False)

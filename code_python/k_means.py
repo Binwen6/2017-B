@@ -29,3 +29,6 @@ plt.xlabel('Longitude')
 plt.ylabel('Latitude')
 plt.title('K-means Clustering of Task Data')
 plt.show()
+
+# Save the plt
+fig.savefig('../fig/k_means.png')

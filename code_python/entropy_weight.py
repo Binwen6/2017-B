@@ -86,3 +86,9 @@ w_2 = r_2 / (r_1 + r_2)
 
 print('指标1的权值为:', w_2)
 print('指标2的权值为:', w_1)
+
+# 新建一列数据
+w_1 = 0.6507
+w_2 = 0.3493
+data['cp'] = w_1 * data['指标1'] + w_2 * data['指标2']
+data.to_excel('../data/会员完成能力指标.xlsx', index=False)

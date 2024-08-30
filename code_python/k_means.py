@@ -3,7 +3,7 @@ from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df = pd.read_excel('../data/附件一：已结束项目任务数据.xls')
+df = pd.read_excel('../data/有效已结束项目任务位置数据.xlsx')
 # Standardize the data
 scaler = StandardScaler()
 data = df[['任务gps经度', '任务gps 纬度']]
@@ -32,3 +32,13 @@ plt.show()
 
 # Save the plt
 fig.savefig('../fig/k_means.png')
+
+# 将每个任务所属的簇保存到文件data/有效已结束项目任务位置数据.xlsx
+df.to_excel('../data/有效已结束项目任务位置数据.xlsx', index=False)
+
+# 根据每个任务的经纬度计算该任务点与其所属簇的中心点的距离
+df['distance'] = 0
+for i in range(4):
+    df['distance'] = df.apply(lambda x: (x['任务gps经度'] - centers[i][0]) ** 2 + (x['任务gps 纬度'] - centers[i][1]) ** 2, axis=1)
+df.to_excel('../data/有效已结束项目任务位置数据.xlsx', index=False)
+
